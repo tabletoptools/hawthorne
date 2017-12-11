@@ -41,7 +41,7 @@ const ROUTE_CONFIG: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'activities'
+        redirectTo: 'activities/list'
     }
 ];
 
