@@ -1,11 +1,4 @@
 export interface Session extends Activity {
-    name: string;
-    date: Date;
-    dtp: number;
-    characters: Character[];
-    exp: number;
-    money: number;
-    comment: string;
 }
 
 export interface Player {
@@ -23,6 +16,14 @@ export interface Character {
 }
 
 export interface Activity {
+    id: number;
+    name: string;
+    date: Date;
+    dtp: number;
+    character: string;
+    exp: number;
+    money: number;
+    comment: string;
 }
 
 export enum ActivityType {

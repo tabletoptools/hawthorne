@@ -1,3 +1,9 @@
-<p>
-  activity-form works!
-</p>
+<form #form="ngForm">
+    <mat-form-field>
+        <mat-select [(value)]="type">
+            <mat-option [value]="ActivityType.SESSION">Session</mat-option>
+        </mat-select>
+        <mat-placeholder>Choose an Activity</mat-placeholder>
+    </mat-form-field>
+    <ttt-session-form [(model)]="model" *ngIf="type === ActivityType.SESSION"></ttt-session-form>
+</form>

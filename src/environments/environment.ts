@@ -3,6 +3,9 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+import {PersistenceType} from "../PersistenceType";
+
 export const environment = {
-  production: false
+    production: false,
+    persistence: PersistenceType.LOCAL
 };

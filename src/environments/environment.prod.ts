@@ -1,3 +1,6 @@
+import {PersistenceType} from "../PersistenceType";
+
 export const environment = {
-  production: true
+    production: true,
+    persistence: PersistenceType.LOCAL
 };

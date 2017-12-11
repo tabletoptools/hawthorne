@@ -57,3 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 
+#IntelliJ project config
+*.iml
+.idea/
+hawthorne.iml
