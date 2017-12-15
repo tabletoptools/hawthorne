@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AppForm} from "../../AppForm";
-import {Activity, ActivityType} from "../Model";
+import {AppForm} from "../../../AppForm";
+import {Activity, ActivityType} from "../../Model";
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -20,8 +20,6 @@ export class ActivityFormComponent extends AppForm implements OnInit {
 
     @ViewChild('form')
     form: NgForm;
-
-    type: ActivityType;
 
     constructor() {
         super();

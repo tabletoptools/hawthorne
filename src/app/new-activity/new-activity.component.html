@@ -1,3 +1,8 @@
 <mat-card>
-    <ttt-activity-form></ttt-activity-form>
+    <mat-card-content>
+        <ttt-activity-form #form [(model)]="activity"></ttt-activity-form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="submit()" [disabled]="!form.isValid()">Create</button>
+    </mat-card-actions>
 </mat-card>

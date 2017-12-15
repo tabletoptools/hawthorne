@@ -1,0 +1,25 @@
+<form #form="ngForm" (change)="modelChange.emit(model)">
+    <mat-form-field>
+        <input matInput #character="ngModel" [(ngModel)]="model.character" name="character" />
+        <mat-placeholder>Character</mat-placeholder>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #date="ngModel" [(ngModel)]="model.date" name="date" [matDatepicker]="datepicker" />
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #datepicker></mat-datepicker>
+        <mat-placeholder>Date</mat-placeholder>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #dtp="ngModel" [(ngModel)]="model.dtp" name="dtp" />
+        <mat-placeholder>DTP spent</mat-placeholder>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #money="ngModel" [(ngModel)]="model.money" name="money" />
+        <mat-placeholder>Gold earned</mat-placeholder>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput #comment="ngModel" [(ngModel)]="model.comment" name="comment"></textarea>
+        <mat-placeholder>Comment</mat-placeholder>
+    </mat-form-field>
+</form>
+

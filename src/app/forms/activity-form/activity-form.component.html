@@ -1,0 +1,21 @@
+<form #form="ngForm" (change)="modelChange.emit(model)">
+    <mat-form-field>
+        <mat-select class="ttt-select" [(value)]="model.type">
+            <mat-option [value]="ActivityType.SESSION">Session</mat-option>
+            <mat-option [value]="ActivityType.CRAFTING">Crafting</mat-option>
+            <mat-option [value]="ActivityType.HOUSING">Housing</mat-option>
+            <mat-option [value]="ActivityType.SPELLS">Spells</mat-option>
+            <mat-option [value]="ActivityType.TRAVEL">Travel</mat-option>
+            <mat-option [value]="ActivityType.GOLD">Gold</mat-option>
+            <mat-option [value]="ActivityType.TRAINING">Training</mat-option>
+        </mat-select>
+        <mat-placeholder>Choose an Activity</mat-placeholder>
+    </mat-form-field>
+    <ttt-session-form [(model)]="model" *ngIf="model.type === ActivityType.SESSION"></ttt-session-form>
+    <ttt-crafting-form [(model)]="model" *ngIf="model.type === ActivityType.CRAFTING"></ttt-crafting-form>
+    <ttt-housing-form [(model)]="model" *ngIf="model.type === ActivityType.HOUSING"></ttt-housing-form>
+    <ttt-gold-form [(model)]="model" *ngIf="model.type === ActivityType.GOLD"></ttt-gold-form>
+    <ttt-training-form [(model)]="model" *ngIf="model.type === ActivityType.TRAINING"></ttt-training-form>
+    <ttt-travel-form [(model)]="model" *ngIf="model.type === ActivityType.TRAVEL"></ttt-travel-form>
+    <ttt-spellcasting-form [(model)]="model" *ngIf="model.type === ActivityType.SPELLS"></ttt-spellcasting-form>
+</form>

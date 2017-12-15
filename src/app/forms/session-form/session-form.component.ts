@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AppForm} from "../../AppForm";
+import {AppForm} from "../../../AppForm";
 import {NgForm} from "@angular/forms";
-import {Session} from "../Model";
+import {Session} from "../../Model";
 
 @Component({
     selector: 'ttt-session-form',

@@ -3,11 +3,13 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {SessionFormComponent} from './session-form/session-form.component';
-import {ActivityFormComponent} from './activity-form/activity-form.component';
+import {SessionFormComponent} from './forms/session-form/session-form.component';
+import {ActivityFormComponent} from './forms/activity-form/activity-form.component';
 import {ActivityPanelComponent} from './activity-panel/activity-panel.component';
 import {
-    MatAutocompleteModule, MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatListModule, MatNativeDateModule, MatPaginatorModule,
+    MatAutocompleteModule, MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
     MatSelectModule,
     MatSortModule,
     MatTableModule
@@ -19,6 +21,14 @@ import { EditActivityComponent } from './edit-activity/edit-activity.component';
 import { ActivityComponent } from './activity/activity.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CraftingFormComponent } from './forms/crafting-form/crafting-form.component';
+import { HousingFormComponent } from './forms/housing-form/housing-form.component';
+import { GoldFormComponent } from './forms/gold-form/gold-form.component';
+import {ChartsModule} from "ng2-charts";
+import { TrainingFormComponent } from './forms/training-form/training-form.component';
+import { TravelFormComponent } from './forms/travel-form/travel-form.component';
+import { SpellcastingFormComponent } from './forms/spellcasting-form/spellcasting-form.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 const ROUTE_CONFIG: Routes = [
     {
@@ -53,12 +63,19 @@ const ROUTE_CONFIG: Routes = [
     ActivityPanelComponent,
     NewActivityComponent,
     EditActivityComponent,
-    ActivityComponent
+    ActivityComponent,
+    CraftingFormComponent,
+    HousingFormComponent,
+    GoldFormComponent,
+    TrainingFormComponent,
+    TravelFormComponent,
+    SpellcastingFormComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule,
       FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
-      MatListModule,
+      MatListModule, ChartsModule, MatDialogModule, MatMenuModule,
       MatCardModule, RouterModule.forRoot(ROUTE_CONFIG)
   ],
   providers: [ActivityService],

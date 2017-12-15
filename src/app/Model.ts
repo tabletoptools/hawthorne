@@ -1,4 +1,61 @@
 export interface Session extends Activity {
+    exp: number;
+}
+
+export interface Crafting extends Activity {
+}
+
+export interface Housing extends Activity {
+}
+
+export interface Spellcasting extends Activity {
+
+}
+
+export interface Travelling extends Activity {
+
+}
+
+export interface Goldfarming extends Activity {
+
+}
+
+export interface Training extends Activity {
+
+}
+
+export interface Activity {
+    type: ActivityType;
+    name: string;
+    id: number;
+    date: Date;
+    dtp: number;
+    character: string;
+    money: number;
+    comment: string;
+}
+
+export enum Size {
+    SMALL = 1,
+    MEDIUM = 2,
+    LARGE = 3
+}
+
+export enum ActivityType {
+    SESSION = 1,
+    TRAVEL = 2,
+    HOUSING = 3,
+    CRAFTING = 4,
+    SPELLS = 5,
+    GOLD = 6,
+    TRAINING = 7
+}
+
+export interface HouseProject {
+    type: Size;
+    built: boolean;
+    name: string;
+    floors: number;
 }
 
 export interface Player {
@@ -15,20 +72,19 @@ export interface Character {
     money: number;
 }
 
-export interface Activity {
-    id: number;
-    name: string;
-    date: Date;
-    dtp: number;
-    character: string;
-    exp: number;
-    money: number;
-    comment: string;
+export enum Place {
+    Lerwick = 1,
+    Waterdeep = 2
 }
 
-export enum ActivityType {
-    SESSION = 1
-}
+export const DISTANCES = [
+    {
+        loc1: Place.Lerwick,
+        loc2: Place.Waterdeep,
+        distance: 15
+    }
+];
+
 
 export function getLevelForEXP(exp: number): number {
     if (exp >= 355000) return 20;
