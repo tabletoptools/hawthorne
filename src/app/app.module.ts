@@ -71,7 +71,7 @@ const ROUTE_CONFIG: Routes = [
         FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
         MatListModule, ChartsModule, MatDialogModule, MatMenuModule,
         MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true}),
-        environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
+        environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
     ],
     providers: [ActivityService],
     bootstrap: [AppComponent],

@@ -1,17 +1,17 @@
 {
-    "index": "/index.html",
+    "index": "index.html",
     "assetGroups": [{
         "name": "Hawthorne",
         "installMode": "prefetch",
         "resources": {
             "files": [
-                "/favicon.ico",
-                "/index.html"
+                "favicon.ico",
+                "index.html"
             ],
             "versionedFiles": [
-                "/*.bundle.css",
-                "/*.bundle.js",
-                "/*.chunk.js"
+                "*.bundle.css",
+                "*.bundle.js",
+                "*.chunk.js"
             ]
         }
     }, {
