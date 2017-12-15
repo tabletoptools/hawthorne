@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatMenu, MatMenuTrigger, MatPaginator, MatSort, MatTableDataSource, MenuPositionX} from "@angular/material";
+import {MatDialog, MatMenu, MatMenuTrigger, MatPaginator, MatRow, MatSort, MatTableDataSource, MenuPositionX} from "@angular/material";
 import {Activity, ActivityType} from "../Model";
 import {ActivityService} from "../activity.service";
+import {ActivityDialogComponent} from "../activity-dialog/activity-dialog.component";
 
 @Component({
     selector: 'ttt-activity-panel',
@@ -14,6 +15,7 @@ export class ActivityPanelComponent implements OnInit {
     activities: Activity[] = [];
     datasource: MatTableDataSource<Activity> = new MatTableDataSource(this.activities);
     displayedColumns = ['type', 'date', 'name', 'character', 'dtp', 'exp', 'money', 'comment'];
+    selected: Activity;
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('tableContextMenu') tCM: MatMenu;
@@ -24,6 +26,15 @@ export class ActivityPanelComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.loadActivities();
+    }
+
+    log(e: MouseEvent, x) {
+        console.log(x);
+        e.preventDefault();
+    }
+
+    loadActivities() {
         this.activityService.getActivities()
             .then(
                 activities => {
@@ -34,16 +45,35 @@ export class ActivityPanelComponent implements OnInit {
                     this.datasource.data = this.activities;
                     this.datasource.sort = this.sort;
                     this.datasource.paginator = this.paginator;
+                    this.selected = null;
                 }
             )
     }
 
-    log(e: MouseEvent, x) {
-        console.log(x);
-        e.preventDefault();
+    openActivityDialog(selected?) {
+        selected ? this.dialogRef = this.dialog.open(ActivityDialogComponent, {data: {id: 'editActivity', activity: selected}})
+            : this.dialogRef = this.dialog.open(ActivityDialogComponent, {data: {id: 'newActivity'}});
+
+        this.dialogRef.afterClosed().subscribe((activity) => {
+            if(activity) {
+                if(activity['delete']) this.activityService.deleteActivity(activity)
+                    .then(
+                        result => this.loadActivities()
+                    );
+                else if(activity.id) this.activityService.updateActivity(activity)
+                    .then(
+                        activity => this.loadActivities()
+                    );
+                else this.activityService.createActivity(activity)
+                    .then(
+                        activity => this.loadActivities()
+                    );
+            }
+        })
     }
 
-    spawnCard(x, y) {
+    select(row) {
+        this.selected = row;
 
     }
 }

@@ -12,15 +12,10 @@ export class NewActivityComponent implements OnInit {
 
     activity: Activity = {} as Activity;
 
-    constructor(private router: Router, private service: ActivityService) {
+    constructor() {
     }
 
     ngOnInit() {
-    }
-
-    submit() {
-        this.service.createActivity(this.activity);
-        this.router.navigate(['/activities/list'])
     }
 
 }

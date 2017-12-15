@@ -1,8 +1,7 @@
-<mat-card>
-    <mat-card-content>
-        <ttt-activity-form #form [(model)]="activity"></ttt-activity-form>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button (click)="submit()" [disabled]="!form.isValid()">Create</button>
-    </mat-card-actions>
-</mat-card>
+<mat-dialog-content>
+    <ttt-activity-form #form [(model)]="activity"></ttt-activity-form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Cancel</button>
+    <button mat-raised-button color="primary" [matDialogClose]="activity" [disabled]="!form.isValid()">Create</button>
+</mat-dialog-actions>

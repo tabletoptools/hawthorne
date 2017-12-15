@@ -1,3 +1,12 @@
-<p>
-  edit-activity works!
-</p>
+<mat-dialog-content>
+    <ttt-activity-form #form [(model)]="activity"></ttt-activity-form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Cancel</button>
+    <button mat-raised-button color="primary" [matDialogClose]="activity" [disabled]="!form.isValid()">Edit</button>
+    <button mat-button [style.margin-left]="'auto'" [style.float]="'right'" (click)="deletionRequested = true" *ngIf="!deletionRequested">Delete</button>
+    <span *ngIf="deletionRequested" [style.margin-left]="'auto'">
+        <button mat-button [style.float]="'right'" color="warn" (click)="delete()" *ngIf="deletionRequested">Confirm</button>
+        <button mat-button [style.float]="'right'" (click)="deletionRequested = false" *ngIf="deletionRequested">Cancel</button>
+    </span>
+</mat-dialog-actions>

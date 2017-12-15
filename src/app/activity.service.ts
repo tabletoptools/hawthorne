@@ -9,8 +9,17 @@ export class ActivityService {
     constructor() {
     }
 
-    getNextActivityID(): number {
-        return (window.localStorage.length === 0) ? 1 : (+window.localStorage.key(window.localStorage.length-1).split('-')[1])+1;
+    getNextActivityID(): Promise<number> {
+        return new Promise(
+            (resolve) => {
+                this.getActivities().then(
+                    (result: Activity[]) => {
+                        if (result.length === 0) resolve(1);
+                        else resolve(Math.max(...result.map((obj => obj.id))) + 1);
+                    }
+                )
+            }
+        )
     }
 
     getActivities(id?): Promise<Activity[]> {
@@ -19,37 +28,88 @@ export class ActivityService {
             return Promise.reject(null);
         }
         else {
-
-            if (window.localStorage.length === 0) return Promise.resolve([]);
-            let activities: Activity[] = [];
-            for(let x = 0; x < localStorage.length; x++) {
-                if(localStorage.key(x).startsWith("activity-")) {
-                    activities.push(JSON.parse(localStorage.getItem(localStorage.key(x))))
-                }
-            }
+            let activities: Activity[] = localStorage.getItem("activities") ? JSON.parse(localStorage.getItem("activities")) : [];
+            if (activities.length === 0) localStorage.setItem("activities", JSON.stringify([]));
             return Promise.resolve(activities);
         }
 
     }
 
     getActivity(id): Promise<Activity> {
-        return Promise.resolve(JSON.parse(window.localStorage.getItem("activity-"+id)));
+        return new Promise(
+            (resolve) => {
+                this.getActivities()
+                    .then(
+                        (activities: Activity[]) => {
+                            resolve(activities.find(activity => activity.id === id))
+                        }
+                    )
+            }
+        )
     }
 
     createActivity(activity: Activity): Promise<Activity> {
-        activity.id = this.getNextActivityID();
-        window.localStorage.setItem("activity-"+activity.id, JSON.stringify(activity));
-        return Promise.resolve(activity);
+        return new Promise(
+            (resolve) => {
+                this.getNextActivityID().then(
+                    id => {
+                        activity.id = id;
+                        this.getActivities()
+                            .then(
+                                (activities) => {
+                                    activities.push(activity);
+                                    this.setActivities(activities)
+                                        .then(
+                                            activities => resolve(activity)
+                                        )
+                                }
+                            )
+
+                    }
+                )
+            }
+        )
+    }
+
+    setActivities(activities): Promise<Activity[]> {
+        return new Promise(
+            (resolve) => {
+                window.localStorage.setItem("activities", JSON.stringify(activities));
+                resolve(activities);
+            }
+        )
     }
 
     updateActivity(activity): Promise<Activity> {
-        let old = JSON.parse(window.localStorage.getItem("activity-"+activity.id));
-        let id = old.id;
 
-        Object.assign(old, activity);
-        old.id = id;
-        window.localStorage.setItem("activity-", JSON.stringify(activity));
-        return Promise.resolve(activity);
+        return new Promise(
+            (resolve) => {
+                this.getActivities().then(
+                    (activities: Activity[]) => {
+                        activities[activities.indexOf(activities.find(a => a.id === activity.id))] = activity;
+                        this.setActivities(activities).then(
+                            (newActivities) => resolve(activity)
+                        )
+
+                    }
+                )
+            }
+        )
+    }
+
+    deleteActivity(activity): Promise<boolean> {
+        return new Promise(
+            (resolve) => {
+                this.getActivities().then(
+                    (activities: Activity[]) => {
+                        activities.splice(activities.indexOf(activities.find(a => a.id === activity.id)), 1);
+                        this.setActivities(activities).then(
+                            (activities) => resolve(true)
+                        )
+                    }
+                )
+            }
+        )
     }
 
 }

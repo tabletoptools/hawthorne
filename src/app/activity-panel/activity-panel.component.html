@@ -1,6 +1,7 @@
 <mat-card>
     <mat-card-title>Activities
-        <a mat-raised-button color="primary" [style.float]="'right'" routerLink="../new">New Activity</a>
+        <button mat-raised-button color="primary" (click)="openActivityDialog()" [style.float]="'right'">New Activity</button>
+        <button *ngIf="selected" mat-raised-button color="primary" (click)="openActivityDialog(selected)" [style.margin-right.px]="3" [style.float]="'right'">Edit Activity</button>
     </mat-card-title>
     <div class="table-container mat-elevation-z5">
         <mat-table [dataSource]="datasource" matSort>
@@ -68,7 +69,7 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row (contextmenu)="log($event, row)" class="row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-row class="row" (contextmenu)="log($event, row)" (click)="select(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
         </mat-table>
         <mat-paginator #paginator [pageSize]="10"></mat-paginator>
