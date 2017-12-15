@@ -1,0 +1,36 @@
+{
+  "configVersion": 1,
+  "index": "/hawthorne/index.html",
+  "assetGroups": [
+    {
+      "name": "Hawthorne",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/hawthorne/favicon.ico",
+        "/hawthorne/index.html",
+        "/hawthorne/inline.e275747da36eb7e17651.bundle.js",
+        "/hawthorne/main.ed96ef068414e1991aee.bundle.js",
+        "/hawthorne/polyfills.ecbd78f2c7269cd9c495.bundle.js",
+        "/hawthorne/styles.bdeb341b1dadc0dd3c3e.bundle.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/hawthorne/inline.e275747da36eb7e17651.bundle.js": "35e329cfa9b45427a19d74c21125f9ff621f4f6f",
+    "/hawthorne/main.ed96ef068414e1991aee.bundle.js": "54460d78a291a894ef6e35f4feb29c9002b9d0d8",
+    "/hawthorne/polyfills.ecbd78f2c7269cd9c495.bundle.js": "1d29dc41fffbf3a3713228d565c9924f07de5e1c",
+    "/hawthorne/styles.bdeb341b1dadc0dd3c3e.bundle.css": "e3e92056e0b22a8e958c8581c24eb7d20912ab9f",
+    "/hawthorne/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/hawthorne/index.html": "036dcaae7c5a9f3bd3fe7f78930a54200c880f21"
+  }
+}

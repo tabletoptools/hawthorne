@@ -29,6 +29,8 @@ import {TrainingFormComponent} from './forms/training-form/training-form.compone
 import {TravelFormComponent} from './forms/travel-form/travel-form.component';
 import {SpellcastingFormComponent} from './forms/spellcasting-form/spellcasting-form.component';
 import {ActivityDialogComponent} from './activity-dialog/activity-dialog.component';
+import {ServiceWorkerModule} from "@angular/service-worker";
+import {environment} from "../environments/environment";
 
 const ROUTE_CONFIG: Routes = [
     {
@@ -38,14 +40,6 @@ const ROUTE_CONFIG: Routes = [
             {
                 path: 'list',
                 component: ActivityPanelComponent
-            },
-            {
-                path: 'new',
-                component: NewActivityComponent
-            },
-            {
-                path: 'edit/:id',
-                component: EditActivityComponent
             }
         ]
     },
@@ -76,7 +70,8 @@ const ROUTE_CONFIG: Routes = [
         BrowserModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule,
         FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
         MatListModule, ChartsModule, MatDialogModule, MatMenuModule,
-        MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true})
+        MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true}),
+        environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
     ],
     providers: [ActivityService],
     bootstrap: [AppComponent],
