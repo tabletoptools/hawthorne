@@ -76,7 +76,7 @@ const ROUTE_CONFIG: Routes = [
     BrowserModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule,
       FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
       MatListModule, ChartsModule, MatDialogModule, MatMenuModule,
-      MatCardModule, RouterModule.forRoot(ROUTE_CONFIG)
+      MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true})
   ],
   providers: [ActivityService],
   bootstrap: [AppComponent]
