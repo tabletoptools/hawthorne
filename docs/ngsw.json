@@ -1,0 +1,22 @@
+{
+  "configVersion": 1,
+  "index": "/hawthorne/index.html",
+  "assetGroups": [
+    {
+      "name": "Hawthorne",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {}
+}
