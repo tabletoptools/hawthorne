@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormControl, Validators} from "@angular/forms";
-import {Activity} from "../Model";
+import {Activity} from "../../Model";
 
 @Component({
   selector: 'ttt-dialog',

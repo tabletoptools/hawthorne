@@ -1,15 +1,18 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AppForm} from "../../../AppForm";
-import {Training} from "../../Model";
+import {Character, Training} from "../../Model";
 import {NgForm} from "@angular/forms";
-import {MatSelectChange} from "@angular/material";
+import {MatDialog, MatSelectChange} from "@angular/material";
+import {TTTCharacterDependentForm} from "../../AppActivityForm";
+import {CharacterService} from "../../character.service";
+import {PlayerService} from "../../player.service";
 
 @Component({
     selector: 'ttt-training-form',
     templateUrl: './training-form.component.html',
     styleUrls: ['./training-form.component.css']
 })
-export class TrainingFormComponent extends AppForm implements OnInit {
+export class TrainingFormComponent extends TTTCharacterDependentForm implements OnInit {
 
     @Input()
     model: Training = {} as Training;
@@ -20,11 +23,12 @@ export class TrainingFormComponent extends AppForm implements OnInit {
     @ViewChild('form')
     form: NgForm;
 
-    constructor() {
+    constructor(public characterService: CharacterService, public playerService: PlayerService, public dialog: MatDialog) {
         super();
     }
 
     ngOnInit() {
+        this.getCharacters().then(chars => this.characters = chars);
     }
 
     select(event: MatSelectChange) {

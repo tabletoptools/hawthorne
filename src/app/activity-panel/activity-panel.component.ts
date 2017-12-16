@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatMenu, MatMenuTrigger, MatPaginator, MatRow, MatSort, MatTableDataSource, MenuPositionX} from "@angular/material";
 import {Activity, ActivityType} from "../Model";
 import {ActivityService} from "../activity.service";
-import {ActivityDialogComponent} from "../activity-dialog/activity-dialog.component";
+import {ActivityDialogComponent} from "./activity-dialog/activity-dialog.component";
 
 @Component({
     selector: 'ttt-activity-panel',
@@ -15,7 +15,7 @@ export class ActivityPanelComponent implements OnInit {
     activities: Activity[] = [];
     datasource: MatTableDataSource<Activity> = new MatTableDataSource(this.activities);
     displayedColumns = ['type', 'date', 'name', 'character', 'dtp', 'exp', 'money', 'comment'];
-    selected: Activity;
+    selected: Activity = {} as Activity;
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('tableContextMenu') tCM: MatMenu;
@@ -35,7 +35,7 @@ export class ActivityPanelComponent implements OnInit {
     }
 
     loadActivities() {
-        this.activityService.getActivities()
+        this.activityService.getObjects()
             .then(
                 activities => {
                     activities = activities.sort((a,b) => {
@@ -45,7 +45,7 @@ export class ActivityPanelComponent implements OnInit {
                     this.datasource.data = this.activities;
                     this.datasource.sort = this.sort;
                     this.datasource.paginator = this.paginator;
-                    this.selected = null;
+                    this.selected = {} as Activity;
                 }
             )
     }
@@ -56,15 +56,15 @@ export class ActivityPanelComponent implements OnInit {
 
         this.dialogRef.afterClosed().subscribe((activity) => {
             if(activity) {
-                if(activity['delete']) this.activityService.deleteActivity(activity)
+                if(activity['delete']) this.activityService.deleteObject(activity)
                     .then(
                         result => this.loadActivities()
                     );
-                else if(activity.id) this.activityService.updateActivity(activity)
+                else if(activity.id) this.activityService.updateObject(activity)
                     .then(
                         activity => this.loadActivities()
                     );
-                else this.activityService.createActivity(activity)
+                else this.activityService.createObject(activity)
                     .then(
                         activity => this.loadActivities()
                     );

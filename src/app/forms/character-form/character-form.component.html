@@ -1,0 +1,28 @@
+<form #form="ngForm">
+
+    <mat-form-field>
+        <input matInput #name="ngModel" [(ngModel)]="model.name" name="name" />
+        <mat-placeholder>Name</mat-placeholder>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput #race="ngModel" [(ngModel)]="model.race" name="race" />
+        <mat-placeholder>Race</mat-placeholder>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput #class="ngModel" [(ngModel)]="model.class" name="class" />
+        <mat-placeholder>Class</mat-placeholder>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput #exp="ngModel" type="number" [(ngModel)]="model.exp" name="exp" />
+        <mat-placeholder>Exp</mat-placeholder>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput #money="ngModel" type="number" [(ngModel)]="model.money" name="gold" />
+        <mat-placeholder>Gold</mat-placeholder>
+    </mat-form-field>
+
+</form>

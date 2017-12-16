@@ -30,7 +30,7 @@ export interface Activity {
     id: number;
     date: Date;
     dtp: number;
-    character: string;
+    character: Character;
     money: number;
     comment: string;
 }
@@ -61,15 +61,18 @@ export interface HouseProject {
 export interface Player {
     name: string;
     id: number;
-    characters: Character[];
     dtp: number;
-    activities: Activity[];
 }
 
 export interface Character {
     name: string;
+    id: number;
+    playerId: number;
     exp: number;
     money: number;
+    deceased: boolean;
+    class: string;
+    race: string;
 }
 
 export enum Place {

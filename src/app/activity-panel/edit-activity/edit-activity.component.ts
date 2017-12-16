@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivityService} from "../activity.service";
+import {ActivityService} from "../../activity.service";
 import {Router} from "@angular/router";
-import {Activity} from "../Model";
+import {Activity} from "../../Model";
 import {MatDialogRef} from "@angular/material";
 import {ActivityDialogComponent} from "../activity-dialog/activity-dialog.component";
 

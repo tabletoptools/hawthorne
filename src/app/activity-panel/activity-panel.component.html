@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>Activities
         <button mat-raised-button color="primary" (click)="openActivityDialog()" [style.float]="'right'">New Activity</button>
-        <button *ngIf="selected" mat-raised-button color="primary" (click)="openActivityDialog(selected)" [style.margin-right.px]="3" [style.float]="'right'">Edit Activity</button>
+        <button *ngIf="selected.id" mat-raised-button color="primary" (click)="openActivityDialog(selected)" [style.margin-right.px]="3" [style.float]="'right'">Edit Activity</button>
     </mat-card-title>
     <div class="table-container mat-elevation-z5">
         <mat-table [dataSource]="datasource" matSort>
@@ -35,7 +35,7 @@
 
             <ng-container matColumnDef="character">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Character</mat-header-cell>
-                <mat-cell class="character" *matCellDef="let activity">{{activity.character}}</mat-cell>
+                <mat-cell class="character" *matCellDef="let activity">{{activity.character.name}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="dtp">
@@ -49,7 +49,7 @@
             <ng-container matColumnDef="exp">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>EXP</mat-header-cell>
                 <mat-cell class="exp" *matCellDef="let activity">
-                    <span *ngIf="activity.type === ActivityType.SESSION">{{activity.exp}}</span>
+                    <span [style.color]="'green'" *ngIf="activity.type === ActivityType.SESSION">+{{activity.exp}}</span>
                     <span *ngIf="activity.type !== ActivityType.SESSION">-</span>
                 </mat-cell>
             </ng-container>
@@ -74,4 +74,6 @@
         </mat-table>
         <mat-paginator #paginator [pageSize]="10"></mat-paginator>
     </div>
+</mat-card>
+<mat-card>
 </mat-card>

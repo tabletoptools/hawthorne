@@ -4,7 +4,10 @@
         <mat-placeholder>Name</mat-placeholder>
     </mat-form-field>
     <mat-form-field>
-        <input matInput #character="ngModel" [(ngModel)]="model.character" name="character" />
+        <mat-select [(ngModel)]="model.character" [compareWith]="compareFunction" name="character">
+            <mat-option *ngFor="let character of characters" [value]="character">{{character.name}}</mat-option>
+            <mat-option (click)="openCharacterDialog()">Create New</mat-option>
+        </mat-select>
         <mat-placeholder>Character</mat-placeholder>
     </mat-form-field>
     <mat-form-field>

@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-title>Characters
+        <!--
+        <button mat-raised-button color="primary" (click)="openCharacterDialog()" [style.float]="'right'">New Character</button>
+        -->
+    </mat-card-title>
+    <div class="panel-container-wrapper">
+        <div class="panel-container">
+            <mat-card class="panel" *ngFor="let character of characters">
+                <mat-card-header>
+                    <mat-card-title>{{character.name}}</mat-card-title>
+                    <mat-card-subtitle>Level {{getLevelForEXP(character.exp)}}</mat-card-subtitle>
+                    <!--<img *ngIf="character.image" mat-card-avatar [src]="'data:image/png;base64,'+character.image"/>-->
+                </mat-card-header>
+                <mat-card-content>
+                    {{character.race}} {{character.class}}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="openCharacterDialog(character)">Edit</button>
+                    <button mat-button [style.margin-left]="'auto'" [style.float]="'right'" (click)="toggleDeceased(character)">{{character.deceased ? 'Revive' : 'Kill'}}</button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card class="panel">
+                <mat-card-header>
+                    <mat-card-title>Create a character</mat-card-title>
+                    <mat-card-subtitle>Create a new character</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    &nbsp;
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="openCharacterDialog()">Create</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+</mat-card>
