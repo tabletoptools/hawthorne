@@ -7,7 +7,7 @@ import {CharacterDialogComponent} from "./character-panel/character-dialog/chara
 import {MatDialog} from "@angular/material";
 
 export abstract class TTTCharacterDependentForm extends AppForm {
-    protected characters: Character[] = [];
+    public characters: Character[] = [];
 
     @Input()
     playerId: number;
