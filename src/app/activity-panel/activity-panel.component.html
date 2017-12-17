@@ -3,6 +3,9 @@
         <button mat-raised-button color="primary" (click)="openActivityDialog()" [style.float]="'right'">New Activity</button>
         <button *ngIf="selected.id" mat-raised-button color="primary" (click)="openActivityDialog(selected)" [style.margin-right.px]="3" [style.float]="'right'">Edit Activity</button>
     </mat-card-title>
+    <mat-form-field [style.width.%]="100">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" />
+    </mat-form-field>
     <div class="table-container mat-elevation-z5">
         <mat-table [dataSource]="datasource" matSort>
 

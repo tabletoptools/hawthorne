@@ -76,4 +76,10 @@ export class ActivityPanelComponent implements OnInit {
         this.selected = row;
 
     }
+
+    applyFilter(value) {
+        value = value.trim();
+        value = value.toLowerCase();
+        this.datasource.filter = value;
+    }
 }
