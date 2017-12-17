@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Character, getLevelForEXP} from "../Model";
+import {Activity, ActivityType, Character, getLevelForEXP, Session} from "../Model";
 import {MatDialog} from "@angular/material";
 import {CharacterService} from "../character.service";
 import {CharacterDialogComponent} from "./character-dialog/character-dialog.component";
+import {ActivityService} from "../activity.service";
 
 @Component({
     selector: 'ttt-character-panel',
@@ -11,10 +12,11 @@ import {CharacterDialogComponent} from "./character-dialog/character-dialog.comp
 })
 export class CharacterPanelComponent implements OnInit {
 
-    characters: Character[];
+    characters: Character[] = [];
     dialogRef;
+    activities: Activity[] = [];
 
-    constructor(private dialog: MatDialog, private characterService: CharacterService) {
+    constructor(private dialog: MatDialog, private characterService: CharacterService, private activityService: ActivityService) {
     }
 
     ngOnInit() {
@@ -26,6 +28,13 @@ export class CharacterPanelComponent implements OnInit {
             .then(
                 (characters: Character[]) => {
                     this.characters = characters;
+                    this.characters.forEach((character: Character) => {
+                        this.activityService.getObjects().then(
+                            (activities: Activity[]) => {
+                                this.activities = activities;
+                            }
+                        )
+                    })
                 }
             )
     }
@@ -62,6 +71,13 @@ export class CharacterPanelComponent implements OnInit {
 
     getLevelForEXP(exp) {
         return getLevelForEXP(exp);
+    }
+
+    getTotalExpForCharacter(character: Character): number {
+        return (+this.activities
+            .filter(activity => activity.character.id === character.id && activity.type === ActivityType.SESSION)
+            .map(activity => +(activity as Session).exp)
+            .reduce((total, exp) => total + exp, 0)) + character.exp;
     }
 
 }
