@@ -20,7 +20,8 @@
             "prefix": "ttt",
             "serviceWorker": true,
             "styles": [
-                "styles.css"
+                "styles.css",
+                "hawthorne-theme.scss"
             ],
             "scripts": [],
             "environmentSource": "environments/environment.ts",

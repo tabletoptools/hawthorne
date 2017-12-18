@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$hawthorne-primary: mat-palette($mat-red);
+$hawthorne-accent: mat-palette($mat-grey, A200, A100, A400);
+
+$hawthorne-warn: mat-palette($mat-red);
+
+$hawthorne-theme: mat-dark-theme($hawthorne-primary, $hawthorne-accent, $hawthorne-warn);
+
+@include angular-material-theme($hawthorne-theme);
