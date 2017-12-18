@@ -60,36 +60,46 @@ const ROUTE_CONFIG: Routes = [
     }
 ];
 
+export const IMPORTS = [
+    BrowserModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule,
+    FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
+    MatListModule, ChartsModule, MatDialogModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatIconModule,
+    MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true}),
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
+];
+
+export const DECLARATIONS = [
+    AppComponent,
+    SessionFormComponent,
+    ActivityFormComponent,
+    ActivityPanelComponent,
+    NewActivityComponent,
+    EditActivityComponent,
+    CraftingFormComponent,
+    HousingFormComponent,
+    GoldFormComponent,
+    TrainingFormComponent,
+    TravelFormComponent,
+    SpellcastingFormComponent,
+    ActivityDialogComponent,
+    HawthorneContainerComponent,
+    CharacterPanelComponent,
+    CharacterDialogComponent,
+    CharacterFormComponent,
+    NewCharacterComponent,
+    EditCharacterComponent
+];
+
+export const PROVIDERS = [
+    ActivityService,
+    CharacterService,
+    PlayerService
+];
+
 @NgModule({
-    declarations: [
-        AppComponent,
-        SessionFormComponent,
-        ActivityFormComponent,
-        ActivityPanelComponent,
-        NewActivityComponent,
-        EditActivityComponent,
-        CraftingFormComponent,
-        HousingFormComponent,
-        GoldFormComponent,
-        TrainingFormComponent,
-        TravelFormComponent,
-        SpellcastingFormComponent,
-        ActivityDialogComponent,
-        HawthorneContainerComponent,
-        CharacterPanelComponent,
-        CharacterDialogComponent,
-        CharacterFormComponent,
-        NewCharacterComponent,
-        EditCharacterComponent
-    ],
-    imports: [
-        BrowserModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule,
-        FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
-        MatListModule, ChartsModule, MatDialogModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatIconModule,
-        MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true}),
-        environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
-    ],
-    providers: [ActivityService, CharacterService, PlayerService],
+    declarations: DECLARATIONS,
+    imports: IMPORTS,
+    providers: PROVIDERS,
     bootstrap: [AppComponent],
     entryComponents: [ActivityDialogComponent, CharacterDialogComponent]
 })

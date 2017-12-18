@@ -1,25 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ActivityDialogComponent } from './activity-dialog.component';
+import {ActivityDialogComponent} from './activity-dialog.component';
+import {IMPORTS} from "../../app.module";
 
 describe('ActivityDialogComponent', () => {
-  let component: ActivityDialogComponent;
-  let fixture: ComponentFixture<ActivityDialogComponent>;
+    let component: ActivityDialogComponent;
+    let fixture: ComponentFixture<ActivityDialogComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ActivityDialogComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: IMPORTS,
+            declarations: [ActivityDialogComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ActivityDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ActivityDialogComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
