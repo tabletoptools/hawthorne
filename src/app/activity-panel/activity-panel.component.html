@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>Activities
         <button mat-raised-button color="primary" (click)="openActivityDialog()" [style.float]="'right'">New Activity</button>
-        <button *ngIf="selected.id" mat-raised-button color="primary" (click)="openActivityDialog(selected)" [style.margin-right.px]="3" [style.float]="'right'">Edit Activity</button>
+        <button *ngIf="selection.hasValue()" mat-raised-button color="primary" (click)="openActivityDialog(selection.selected[0])" [style.margin-right.px]="3" [style.float]="'right'">Edit Activity</button>
     </mat-card-title>
     <mat-form-field [style.width.%]="100">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" />
@@ -38,7 +38,7 @@
 
             <ng-container matColumnDef="character">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Character</mat-header-cell>
-                <mat-cell class="character" *matCellDef="let activity">{{activity.character.name}}</mat-cell>
+                <mat-cell class="character" *matCellDef="let activity">{{activity.character ? activity.character.name : ''}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="dtp">
@@ -72,7 +72,7 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row class="row" (contextmenu)="log($event, row)" (click)="select(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-row class="row" [style.background-color]="selection.isSelected(row) ? 'rgba(0, 0, 0, .05)' : ''" (contextmenu)="log($event, row)" (click)="selection.isSelected(row) ? null : selection.select(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
         </mat-table>
         <mat-paginator #paginator [pageSize]="10"></mat-paginator>

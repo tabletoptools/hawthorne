@@ -3,6 +3,7 @@ import {MatDialog, MatMenu, MatMenuTrigger, MatPaginator, MatRow, MatSort, MatTa
 import {Activity, ActivityType} from "../Model";
 import {ActivityService} from "../activity.service";
 import {ActivityDialogComponent} from "./activity-dialog/activity-dialog.component";
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
     selector: 'ttt-activity-panel',
@@ -12,10 +13,10 @@ import {ActivityDialogComponent} from "./activity-dialog/activity-dialog.compone
 export class ActivityPanelComponent implements OnInit {
 
     ActivityType = ActivityType;
-    activities: Activity[] = [];
-    datasource: MatTableDataSource<Activity> = new MatTableDataSource(this.activities);
+    datasource: MatTableDataSource<Activity> = new MatTableDataSource([]);
     displayedColumns = ['type', 'date', 'name', 'character', 'dtp', 'exp', 'money', 'comment'];
-    selected: Activity = {} as Activity;
+    selection = new SelectionModel<Activity>(false);
+
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('tableContextMenu') tCM: MatMenu;
@@ -41,11 +42,9 @@ export class ActivityPanelComponent implements OnInit {
                     activities = activities.sort((a,b) => {
                         return (new Date(a.date).getDate() - new Date(b.date).getDate());
                     });
-                    this.activities = activities;
-                    this.datasource.data = this.activities;
+                    this.datasource.data = activities;
                     this.datasource.sort = this.sort;
                     this.datasource.paginator = this.paginator;
-                    this.selected = {} as Activity;
                 }
             )
     }
@@ -72,14 +71,10 @@ export class ActivityPanelComponent implements OnInit {
         })
     }
 
-    select(row) {
-        this.selected = row;
-
-    }
-
     applyFilter(value) {
         value = value.trim();
         value = value.toLowerCase();
         this.datasource.filter = value;
     }
+
 }
