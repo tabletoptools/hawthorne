@@ -45,8 +45,14 @@ export class ActivityPanelComponent implements OnInit {
                     this.datasource.data = activities;
                     this.datasource.sort = this.sort;
                     this.datasource.paginator = this.paginator;
+                    this.datasource.filterPredicate = this.filterPredicate;
                 }
             )
+    }
+
+    filterPredicate(obj: Activity, filter: String): boolean {
+        let objString = (obj.name + obj.character.name + obj.comment + ActivityType[obj.type].toString()).toLowerCase().replace(" ", "");
+        return objString.indexOf(filter.replace(" ", "")) !== -1;
     }
 
     openActivityDialog(selected?) {
