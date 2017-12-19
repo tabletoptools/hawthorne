@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AppForm} from "../../../AppForm";
 import {Activity, ActivityType} from "../../Model";
 import {NgForm} from "@angular/forms";
+import {TTTCharacterDependentForm} from "../../AppActivityForm";
 
 @Component({
     selector: 'ttt-activity-form',
@@ -21,11 +22,19 @@ export class ActivityFormComponent extends AppForm implements OnInit {
     @ViewChild('form')
     form: NgForm;
 
-    constructor() {
+    @ViewChild('childForm')
+    childForm: TTTCharacterDependentForm;
+
+    constructor(private cdr: ChangeDetectorRef) {
         super();
     }
 
     ngOnInit() {
+    }
+
+    isValid() {
+        this.cdr.detectChanges();
+        return super.isValid() && (this.childForm ? this.childForm.isValid() : false);
     }
 
 }
