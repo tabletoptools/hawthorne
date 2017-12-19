@@ -2,7 +2,9 @@
     <mat-sidenav #sidebar mode="over">
         <mat-toolbar color="primary">
             Options
-            <button mat-icon-button (click)="sidebar.toggle()"><mat-icon>close</mat-icon></button>
+            <button mat-icon-button (click)="sidebar.toggle()">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-toolbar>
         <mat-nav-list>
             <!--<a mat-list-item (click)="sidebar.toggle()" [routerLink]="['/app/players']">Players</a>-->
@@ -11,10 +13,16 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-toolbar color="primary">
+        <span>
         <button (click)="sidebar.toggle()" mat-icon-button>
             <mat-icon>more_vert</mat-icon>
         </button>
         <span>Hawthorne Guild</span>
+        </span>
+        <span [style.flex]="'1 1 auto'"></span>
+        <span>
+            <a mat-button href="https://discordapp.com/api/oauth2/authorize?response_type=code&client_id=392341955893526528&scope=identify%20guilds&redirect_uri=http%3A%2F%2Flocalhost%3A4202%2Ftest">Login to Discord</a>
+        </span>
     </mat-toolbar>
     <router-outlet></router-outlet>
 </mat-sidenav-container>

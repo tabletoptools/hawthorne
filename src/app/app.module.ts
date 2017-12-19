@@ -38,6 +38,7 @@ import {PlayerService} from "./player.service";
 import { CharacterFormComponent } from './forms/character-form/character-form.component';
 import { NewCharacterComponent } from './character-panel/new-character/new-character.component';
 import { EditCharacterComponent } from './character-panel/edit-character/edit-character.component';
+import {AuthorizationComponent} from "./authorization/authorization.component";
 
 const ROUTE_CONFIG: Routes = [
     {
@@ -53,6 +54,10 @@ const ROUTE_CONFIG: Routes = [
                 component: CharacterPanelComponent
             }
         ]
+    },
+    {
+        path: 'authorize',
+        component: AuthorizationComponent
     },
     {
         path: '**',
@@ -87,7 +92,8 @@ export const DECLARATIONS = [
     CharacterDialogComponent,
     CharacterFormComponent,
     NewCharacterComponent,
-    EditCharacterComponent
+    EditCharacterComponent,
+    AuthorizationComponent
 ];
 
 export const PROVIDERS = [
