@@ -1,5 +1,5 @@
 <mat-dialog-content>
-    <ttt-character-form #form [(model)]="character"></ttt-character-form>
+    <ttt-character-form #form [required]="['*']" [(model)]="character"></ttt-character-form>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button matDialogClose>Cancel</button>

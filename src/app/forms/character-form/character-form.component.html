@@ -1,18 +1,21 @@
 <form #form="ngForm">
 
     <mat-form-field>
-        <input matInput #name="ngModel" [(ngModel)]="model.name" name="name" />
+        <input matInput #name="ngModel" [(ngModel)]="model.name" name="name" [required]="isRequired('name')" />
         <mat-placeholder>Name</mat-placeholder>
+        <mat-error *ngIf="name.hasError('required')">Please enter a name</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput #race="ngModel" [(ngModel)]="model.race" name="race" />
+        <input matInput #race="ngModel" [(ngModel)]="model.race" name="race" [required]="isRequired('race')" />
         <mat-placeholder>Race</mat-placeholder>
+        <mat-error *ngIf="race.hasError('required')">Please enter a race</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput #class="ngModel" [(ngModel)]="model.class" name="class" />
+        <input matInput #class="ngModel" [(ngModel)]="model.class" name="class" [required]="isRequired('class')" />
         <mat-placeholder>Class</mat-placeholder>
+        <mat-error *ngIf="class.hasError('required')">Please enter a class</mat-error>
     </mat-form-field>
 
     <mat-form-field>
