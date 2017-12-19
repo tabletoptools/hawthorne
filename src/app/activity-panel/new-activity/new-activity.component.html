@@ -1,5 +1,5 @@
 <mat-dialog-content>
-    <ttt-activity-form #form [(model)]="activity"></ttt-activity-form>
+    <ttt-activity-form [required]="['type', 'item', 'character', 'date', 'dtp', 'money', 'name', 'exp']" #form [(model)]="activity"></ttt-activity-form>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button matDialogClose>Cancel</button>
