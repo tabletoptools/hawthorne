@@ -5,7 +5,10 @@
 
 import {PersistenceType} from "../PersistenceType";
 
+declare const require: any;
+
 export const environment = {
     production: false,
-    persistence: PersistenceType.LOCAL
+    persistence: PersistenceType.LOCAL,
+    version: require('../../package.json').version
 };
