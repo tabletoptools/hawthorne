@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'ttt-hawthorne-container',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HawthorneContainerComponent implements OnInit {
 
+    version = environment.version;
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
 
 }
