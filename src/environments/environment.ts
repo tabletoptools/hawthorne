@@ -4,11 +4,10 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 import {PersistenceType} from "../PersistenceType";
-
-declare const require: any;
+import {version} from "./version";
 
 export const environment = {
     production: false,
     persistence: PersistenceType.LOCAL,
-    version: require('../../package.json').version
+    version: version
 };
