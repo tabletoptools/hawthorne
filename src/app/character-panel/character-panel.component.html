@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Characters
+    <mat-card-title>Characters | {{getDTP()}} DTP
         <!--
         <button mat-raised-button color="primary" (click)="openCharacterDialog()" [style.float]="'right'">New Character</button>
         -->
@@ -9,7 +9,7 @@
             <mat-card class="panel" *ngFor="let character of characters">
                 <mat-card-header>
                     <mat-card-title>{{character.name}}</mat-card-title>
-                    <mat-card-subtitle>Level {{getLevelForEXP(getTotalExpForCharacter(character))}}</mat-card-subtitle>
+                    <mat-card-subtitle>Level {{getLevelForEXP(getTotalExpForCharacter(character))}} | {{getGoldForCharacter(character)}} GP</mat-card-subtitle>
                     <!--<img *ngIf="character.image" mat-card-avatar [src]="'data:image/png;base64,'+character.image"/>-->
                 </mat-card-header>
                 <mat-card-content>

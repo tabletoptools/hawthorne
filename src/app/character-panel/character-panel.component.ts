@@ -80,4 +80,30 @@ export class CharacterPanelComponent implements OnInit {
             .reduce((total, exp) => total + exp, 0)) + character.exp;
     }
 
+    getGoldForCharacter(character: Character): number {
+        return (
+            (+this.activities
+            .filter(activity => activity.character.id === character.id && (activity.type === ActivityType.SESSION || activity.type === ActivityType.GOLD))
+                .map(activity => +activity.money)
+                .reduce((total, money) => total + money, 0) + character.money)
+            - (+this.activities
+                .filter(activity => activity.character.id === character.id && !(activity.type === ActivityType.SESSION || activity.type === ActivityType.GOLD))
+                .map(activity => +activity.money)
+                .reduce((total, money) => total + money, 0))
+        )
+    }
+
+    getDTP(): number {
+        return (
+            (+this.activities
+                .filter(activity => activity.type === ActivityType.SESSION)
+                .map(activity => +activity.dtp)
+                .reduce((total, dtp) => total + dtp, 0))
+            - (+this.activities
+                .filter(activity => activity.type !== ActivityType.SESSION)
+                .map(activity => +activity.dtp)
+                .reduce((total, dtp) => total + dtp, 0))
+        )
+    }
+
 }
