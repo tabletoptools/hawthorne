@@ -1,0 +1,12 @@
+<mat-card *ngIf="loggedIn() && user.username">
+    <mat-card-header>
+        <img mat-card-avatar [src]="avatarURL"/>
+        <mat-card-title [matMenuTriggerFor]="menu">{{user.username || ""}}</mat-card-title>
+        <mat-menu xPosition="before" #menu="matMenu">
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+    </mat-card-header>
+</mat-card>
+<mat-card *ngIf="!loggedIn()">
+    <a mat-raised-button color="primary" [href]="getLoginURL()">Login</a>
+</mat-card>

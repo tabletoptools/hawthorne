@@ -1,0 +1,20 @@
+<mat-card *ngIf="!loggedIn()">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Please log in to continue.</mat-card-subtitle>
+    <a mat-raised-button color="primary"  [href]="getLoginLink()">Login</a>
+</mat-card>
+<mat-card *ngIf="loggedIn() && !inHawthorne">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Welcome {{user ? user.username ? user.username : "" : ""}}. You are not a member of the Hawthorne Guild. Let's fix that, shall we?</mat-card-subtitle>
+    <mat-card-actions>
+        <a mat-raised-button color="primary" (click)="inviteClicked = true" href="https://discord.gg/HRnjGVH" target="_blank">Join the Hawthorne Guild</a>
+        <button mat-icon-button *ngIf="inviteClicked" (click)="refreshGuildStatus()"><mat-icon>refresh</mat-icon></button>
+    </mat-card-actions>
+</mat-card>
+<mat-card *ngIf="loggedIn() && inHawthorne">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Welcome {{user ? user.username ? user.username : "" : ""}}. You are set to use this application.</mat-card-subtitle>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+    </mat-card-actions>
+</mat-card>

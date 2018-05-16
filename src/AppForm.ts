@@ -21,28 +21,28 @@ export abstract class AppForm {
     @Input()
     blacklist: string[] = [];
 
-    isInBlacklist(field) {
+    public isInBlacklist(field) {
         return (
             this.blacklist.includes(field)
             || this.blacklist.includes('*')
         );
     }
 
-    isDisabled(field) {
+    public isDisabled(field) {
         return (
             this.disabled.includes(field)
             || this.disabled.includes('*')
         );
     }
 
-    isRequired(field) {
+    public isRequired(field) {
         return (
             this.required.includes(field)
             || this.required.includes('*')
         );
     }
 
-    isValid() {
+    public isValid() {
         return !this.form.invalid;
     }
 }
