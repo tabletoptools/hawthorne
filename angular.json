@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "hawthorne": {
+      "root": "",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "docs",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "assets",
+                "input": "/src",
+                "output": "/"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "/src",
+                "output": "/"
+              },
+              {
+                "glob": "callback.html",
+                "input": "/src",
+                "output": "/"
+              }
+            ],
+            "styles": [
+              {
+                "input": "node_modules/cropperjs/dist/cropper.css"
+              },
+              {
+                "input": "src/styles.css"
+              },
+              {
+                "input": "src/hawthorne-theme.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "dev": {
+              "fileReplacements": [
+                {
+                  "from": "src/environments/environment.ts",
+                  "to": "docs/environments/environment.ts"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "from": "src/environments/environment.ts",
+                  "to": "docs/undefined"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hawthorne:build"
+          },
+          "configurations": {
+            "dev": {
+              "browserTarget": "hawthorne:build:dev"
+            },
+            "production": {
+              "browserTarget": "hawthorne:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hawthorne:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "karmaConfig": "./karma.conf.js",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              {
+                "input": "node_modules/cropperjs/dist/cropper.css"
+              },
+              {
+                "input": "src/styles.css"
+              },
+              {
+                "input": "src/hawthorne-theme.scss"
+              }
+            ],
+            "assets": [
+              {
+                "glob": "assets",
+                "input": "/src",
+                "output": "/"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "/src",
+                "output": "/"
+              },
+              {
+                "glob": "callback.html",
+                "input": "/src",
+                "output": "/"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hawthorne-e2e": {
+      "root": "",
+      "projectType": "application",
+      "cli": {},
+      "schematics": {},
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "hawthorne:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "ttt",
+      "styleext": "css"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "ttt"
+    }
+  }
+}

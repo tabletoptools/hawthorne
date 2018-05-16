@@ -1,0 +1,7 @@
+.titlebar {
+    justify-content: space-between;
+}
+
+.titlebar-section {
+    flex: 0 1;
+}

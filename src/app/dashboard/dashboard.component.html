@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-header>
+
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card *ngIf="isInRole('445939304695595028')">
+            <mat-card-title>Your Adventurer Application is pending. Please be patient while our PR team evaluates it.</mat-card-title>
+        </mat-card>
+        <mat-grid-list [cols]="calculateRowCount()" rowHeight="2:1" gutterSize="4px">
+            <mat-grid-tile *ngIf="!(isInRole('343393950079385610') || isInRole('445939304695595028'))">
+                <mat-card (click)="route(['app', 'request', 'adventurer'])">
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title>New Adventurer Registration</mat-card-title>
+                            <mat-card-subtitle>Apply as an Adventurer</mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf="isNotInRole('418756942941650955') && isInRole('343393950079385610')">
+                <mat-card (click)="route(['app', 'request', 'trialDM'])">
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title>New Trial DM Application</mat-card-title>
+                            <mat-card-subtitle>Apply to be a trial DM</mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+    <mat-card-footer>
+
+    </mat-card-footer>
+</mat-card>

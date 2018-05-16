@@ -88,6 +88,36 @@ export const DISTANCES = [
     }
 ];
 
+export interface Item {
+    name: string;
+    tier: number;
+    weight: number;
+}
+
+export interface Request {
+    type: string;
+    comment: string;
+}
+
+export interface SessionRequest extends Request {
+    subrequests: Request[]
+
+}
+
+export interface AdventurerRegistration {
+    email: string;
+    townName: string;
+    ruleTwo: string;
+    birthdate: string;
+}
+
+export interface User {
+    id: string;
+    avatar: string;
+    username: string;
+    discriminator: string;
+    email: string;
+}
 
 export function getLevelForEXP(exp: number): number {
     if (exp >= 355000) return 20;
