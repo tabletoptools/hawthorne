@@ -1,17 +1,15 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
-import {AppForm} from "../../../AppForm";
-import {Router} from '@angular/router'
-import {NgForm} from "@angular/forms";
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import {Router} from "@angular/router";
+import {NgForm} from "@angular/forms"
 import {AdventurerRegistration} from "../../Model";
-import {Input, Output, ViewChild} from '@angular/core';
 import {RequestService} from "../../request.service";
 
 @Component({
-    selector: 'ttt-adventurer',
-    templateUrl: './adventurer.component.html',
-    styleUrls: ['./adventurer.component.css']
+  selector: 'ttt-trial-dm',
+  templateUrl: './trial-dm.component.html',
+  styleUrls: ['./trial-dm.component.css']
 })
-export class AdventurerComponent implements OnInit {
+export class TrialDmComponent implements OnInit {
 
     @Input()
     model: AdventurerRegistration = {} as AdventurerRegistration;

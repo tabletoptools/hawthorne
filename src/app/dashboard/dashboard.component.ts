@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {BotService} from "../bot.service";
+import {interval, Observable, timer} from "rxjs";
 
 @Component({
     selector: 'ttt-dashboard',
@@ -9,16 +10,23 @@ import {BotService} from "../bot.service";
 })
 export class DashboardComponent implements OnInit {
 
-    roles = {};
+    roles;
 
     constructor(private service: BotService, private router: Router) {
 
     }
 
     ngOnInit() {
-        this.service.getRoles().then(
-            roles => this.roles = roles
-        )
+
+        this.updateRoles();
+        interval(5000).subscribe(n => this.updateRoles());
+
+    }
+
+    updateRoles() {
+        this.service.getRoles().then(roles => {
+                this.roles = roles;
+            })
     }
 
     calculateRowCount() {

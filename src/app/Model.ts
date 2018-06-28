@@ -111,6 +111,10 @@ export interface AdventurerRegistration {
     birthdate: string;
 }
 
+export interface TrialDMApplication {
+
+}
+
 export interface User {
     id: string;
     avatar: string;

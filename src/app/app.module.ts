@@ -21,7 +21,8 @@ import {
     MatSidenavModule,
     MatSortModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {ActivityService} from "./activity.service";
@@ -44,6 +45,7 @@ import { RequestComponent } from './request/request.component';
 import { SessionRequestComponent } from './forms/session-request/session-request.component';
 import { AdventurerComponent } from './request/adventurer/adventurer.component';
 import {RequestService} from "./request.service";
+import { TrialDmComponent } from './request/trial-dm/trial-dm.component';
 
 const ROUTE_CONFIG: Routes = [
     {
@@ -61,6 +63,10 @@ const ROUTE_CONFIG: Routes = [
                     {
                         path: 'adventurer',
                         component: AdventurerComponent
+                    },
+                    {
+                        path: 'trialDM',
+                        component: TrialDmComponent
                     }
                 ]
             }
@@ -94,11 +100,12 @@ export const IMPORTS = [
         RequestComponent,
         SessionRequestComponent,
         AdventurerComponent,
+        TrialDmComponent,
     ],
     imports: [
         BrowserModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule,
         FormsModule, MatSelectModule, MatAutocompleteModule, BrowserAnimationsModule, MatDatepickerModule, MatNativeDateModule,
-        MatListModule, ChartsModule, MatDialogModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatIconModule,
+        MatListModule, ChartsModule, MatDialogModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule,
         MatCardModule, RouterModule.forRoot(ROUTE_CONFIG, {useHash: true}), ReactiveFormsModule, HttpClientModule, MatGridListModule,
         environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
     ],

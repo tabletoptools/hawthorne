@@ -1,0 +1,32 @@
+<form #form="ngForm">
+    <mat-form-field>
+        <mat-label>Town Name</mat-label>
+        <input
+            required
+            title="townName"
+            name="townName"
+            [(ngModel)]="model.townName"
+            #townName="ngModel"
+            matInput
+            placeholder="What is the name of the town the guild is located in?" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Rule Two</mat-label>
+        <input
+            required
+            title="ruleTwo"
+            name="ruleTwo"
+            [(ngModel)]="model.ruleTwo"
+            #ruleTwo="ngModel"
+            matInput
+            placeholder="What is second rule in the pinned messages of the newcomers channel?"
+        />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Please enter your Birthday</mat-label>
+        <input name="birthdate" required matInput [(ngModel)]="model.birthdate" #birthdate="ngModel" [matDatepicker]="birthdatePicker" placeholder="Please enter your birthday" />
+        <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+        <mat-datepicker required #birthdatePicker disabled="false"></mat-datepicker>
+    </mat-form-field>
+</form>
+<button mat-raised-button [disabled]="!isValid()" (click)="submit(model)">Submit</button>

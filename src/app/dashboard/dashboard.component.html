@@ -2,7 +2,10 @@
     <mat-card-header>
 
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content *ngIf="!roles">
+        <mat-spinner color="primary" [style.margin]="'auto'"></mat-spinner>
+    </mat-card-content>
+    <mat-card-content *ngIf="roles">
         <mat-card *ngIf="isInRole('445939304695595028')">
             <mat-card-title>Your Adventurer Application is pending. Please be patient while our PR team evaluates it.</mat-card-title>
         </mat-card>

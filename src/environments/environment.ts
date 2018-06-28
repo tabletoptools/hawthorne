@@ -11,5 +11,5 @@ export const environment = {
     persistence: PersistenceType.LOCAL,
     version: version,
     loginURL: "https://discordapp.com/api/oauth2/authorize?client_id=406607705952747530&redirect_uri=http%3A%2F%2Flocalhost%3A4567%2Fcallback.html&response_type=token&scope=identify%20guilds%20email",
-    serverBase: "http://localhost:4567/api"
+    serverBase: "https://api.dnapolian.com/api"
 };
